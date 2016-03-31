@@ -35,4 +35,4 @@ sass:
 	${GULP} sass
 
 scripts:
-	${GULP} scroüts
+	${GULP} scripts
