@@ -8,9 +8,9 @@ var gulp = require('gulp-help')(require('gulp')),
     autoprefixer = require('gulp-autoprefixer');
 
 var basicConfig = {
-     srcDir: './src',
+    srcDir: './src',
     destDir: './static',
-     bowerDir: './bower_components' 
+    bowerDir: './bower_components'
 };
 
 var config = {
@@ -45,9 +45,9 @@ var config = {
 };
 
 // install dependencies
-gulp.task('bower', 'runs bower', function() { 
+gulp.task('bower', 'runs bower', function() {
     return bower()
-         .pipe(gulp.dest(basicConfig.bowerDir)) 
+        .pipe(gulp.dest(basicConfig.bowerDir))
 });
 
 // update dependencies
@@ -55,9 +55,9 @@ gulp.task('update', 'updates the bower dependencies', function() {
     return bower({ cmd: 'update' });
 });
 
-gulp.task('icons', 'copies the icons to destDir', function() { 
-    return gulp.src(config.font.icons) 
-        .pipe(gulp.dest(config.font.dest)); 
+gulp.task('icons', 'copies the icons to destDir', function() {
+    return gulp.src(config.font.icons)
+        .pipe(gulp.dest(config.font.dest));
 });
 
 gulp.task('image', 'optimizes the images', function() {
@@ -79,8 +79,8 @@ gulp.task('sass', 'compiles all scss files to one css file', function () {
             precision: 8,
             includePaths: [
                 basicConfig.srcDir + '/scss',
-                 config.bootstrap.scss,
-                 config.font.scss
+                config.bootstrap.scss,
+                config.font.scss
             ]})
             .on('error', notify.onError(function(error) {
                 return "Error: " + error.message;
@@ -101,9 +101,9 @@ gulp.task('scripts', 'concates all js files to one js file', function() {
 });
 
 // Watch for file changes
- gulp.task('watch', 'watches for .scss and .js changes', function() {
-     gulp.watch(config.scss.src + '/*.scss', ['sass']); 
+gulp.task('watch', 'watches for .scss and .js changes', function() {
+    gulp.watch(config.scss.src + '/*.scss', ['sass']);
     gulp.watch(config.js.src + '/*.js', ['scripts'])
 });
 
-  gulp.task('default', 'default command', ['bower', 'icons', 'sass', 'scripts']);
+gulp.task('default', 'default command', ['bower', 'icons', 'sass', 'scripts']);
