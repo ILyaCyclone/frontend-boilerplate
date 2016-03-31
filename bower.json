@@ -1,0 +1,31 @@
+{
+  "name": "peterjustin",
+  "homepage": "https://github.com/sh4nks/frontend-template",
+  "authors": [
+    "Peter Justin <peter.justin@outlook.com>"
+  ],
+  "description": "Frontend template.",
+  "main": "static/styles.min.css",
+  "moduleType": [],
+  "keywords": [
+    "sass",
+    "gulp",
+    "bower",
+    "template",
+    "website"
+  ],
+  "license": "MIT License",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap-sass": "~3.3.6",
+    "font-awesome": "fontawesome#~4.5.0",
+  }
+}

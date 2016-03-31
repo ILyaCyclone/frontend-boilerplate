@@ -1,0 +1,13 @@
+// Import custom Bootstrap variables
+@import "bootstrap-variables";
+
+// Import Bootstrap for Sass
+@import "bootstrap";
+
+// Import fontawesome icons
+@import "font-awesome";
+
+body {
+    min-height: 2000px;
+    padding-top: 70px;
+}
