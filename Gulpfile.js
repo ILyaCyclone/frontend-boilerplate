@@ -5,7 +5,9 @@ var gulp = require('gulp-help')(require('gulp')),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
-    autoprefixer = require('gulp-autoprefixer');
+    autoprefixer = require('gulp-autoprefixer'),
+    imagemin = require('gulp-imagemin'),
+    browserSync = require('browser-sync');
 
 var basicConfig = {
     srcDir: './src',
@@ -90,7 +92,6 @@ gulp.task('sass', 'compiles all scss files to one css file', function () {
         .pipe(gulp.dest(config.scss.dest));
 });
 
-
 gulp.task('scripts', 'concates all js files to one js file', function() {
     return gulp.src([config.jquery,
                      config.bootstrap.js,
@@ -100,10 +101,25 @@ gulp.task('scripts', 'concates all js files to one js file', function() {
         .pipe(gulp.dest(config.js.dest));
 });
 
-// Watch for file changes
-gulp.task('watch', 'watches for .scss and .js changes', function() {
-    gulp.watch(config.scss.src + '/*.scss', ['sass']);
-    gulp.watch(config.js.src + '/*.js', ['scripts'])
+gulp.task('vendor-scripts', 'concates all vendor js files to one js file', function() {
+    return gulp.src([config.jquery.src,
+                     config.bootstrap.js])
+        .pipe(concat('scripts.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(config.js.dest));
 });
 
-gulp.task('default', 'default command', ['bower', 'icons', 'sass', 'scripts']);
+// Watch for file changes
+gulp.task('watch', 'watches for .scss and .js changes', function() {
+
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
+
+    gulp.watch(config.scss.src + '/*.scss', ['sass']);
+    gulp.watch(config.js.src + '/*.js', ['scripts']);
+});
+
+gulp.task('default', 'default command', ['bower', 'icons', 'sass', 'scripts', 'image']);
